@@ -1,0 +1,7 @@
+{
+  "name": "sysmoui_age",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
