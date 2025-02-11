@@ -26,7 +26,12 @@ export class SysmoAgeComponent  implements OnInit {
     const currentDate=new Date()
     const dateOfBirth = new Date(this.dob)
       this.age=currentDate.getFullYear()-dateOfBirth.getFullYear()
-      console.log(this.age)
+      //check the birthday of the current year to return exact age
+      if(currentDate.getMonth()<dateOfBirth.getMonth() || 
+      currentDate.getMonth()===dateOfBirth.getMonth() && 
+      currentDate.getDate()>dateOfBirth.getDate()){
+        this.age--
+      }
       
     }catch(error){
       console.error(error)
