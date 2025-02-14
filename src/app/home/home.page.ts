@@ -1,7 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Pipe } from '@angular/core';
 import {IonicModule} from '@ionic/angular'
-import { SysmoAgeComponent } from '../Components/sysmo-age/sysmo-age.component';
 import { SysmoDobComponent } from '../Components/sysmo-dob/sysmo-dob.component';
+import { FormControl, FormGroup, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-home',
@@ -9,16 +11,16 @@ import { SysmoDobComponent } from '../Components/sysmo-dob/sysmo-dob.component';
   styleUrls: ['home.page.scss'],
   imports: [
     IonicModule,
-    SysmoAgeComponent,
-    SysmoDobComponent
+    CommonModule,
+    SysmoDobComponent,
+    ReactiveFormsModule,
   ],
    changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class HomePage {
-  dob!:string
-  changeDateOfBirth(event:string){
-    this.dob=event
-    console.log("From Home"+" "+this.dob)
-  }
+
+  myForm=new FormGroup({
+    dob:new FormControl('',Validators.required)
+  })
   constructor() {}
 }

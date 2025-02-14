@@ -1,13 +1,13 @@
 
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Age Calculator</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  
   <div class="ion-padding-top">
-  <label>Date Of Birth:</label>
- <ion-input type="date" fill="outline" [min]="minDate" [max]="maxDate" (ionChange)="selectedDateOfBirth($event)">
- </ion-input>
+  <ion-input type="date" fill="outline" 
+    [min]="minDate" [max]="maxDate" [value]="dateOfBirth"
+    (ionChange)="selectedDateOfBirth($event)"
+    (ionBlur)="onTouched()"
+   ></ion-input>
+ 
+ <sysmo-age [dob]="dateOfBirth"></sysmo-age>
  </div>
 
 

@@ -1,4 +1,13 @@
-<ion-content>
-  <app-sysmo-dob (changeDob)="changeDateOfBirth($event)"></app-sysmo-dob>
-  <app-sysmo-age [dob]="dob"></app-sysmo-age>
-</ion-content>
+  <form [formGroup]="myForm" class="ion-padding-top">
+  <!-- <ion-input type="date" formControlName="dob"></ion-input> -->
+  <label>Date Of Birth:</label>
+  <sysmo-dob formControlName="dob" 
+    [ngClass]="{'errro-border':myForm.get('dob')?.errors?.['required'] && myForm.get('dob')?.touched}">
+  </sysmo-dob>
+  <div *ngIf="myForm.get('dob')?.errors?.['required'] && myForm.get('dob')?.touched">
+    <small style="color:red">Please Enter the Correct DOB</small>
+  </div>
+</form>
+<p>{{myForm.value|json}}</p>
+
+  
