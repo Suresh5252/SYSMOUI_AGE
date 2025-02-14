@@ -25,6 +25,14 @@
 #container a {
   text-decoration: none;
 }
-.errro-border{
-  color: red;
+// .error-border{
+//   border: 5px solid red;
+//   border-radius: 5px;
+//   padding: 4px;
+//   color: red;
+// }
+
+::ng-deep .error-border {
+  border: 2px solid red;
+  border-radius: 4px;
 }

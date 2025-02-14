@@ -1,8 +1,9 @@
-  <form [formGroup]="myForm" class="ion-padding-top">
+  <form [formGroup]="myForm">
   <!-- <ion-input type="date" formControlName="dob"></ion-input> -->
   <label>Date Of Birth:</label>
   <sysmo-dob formControlName="dob" 
-    [ngClass]="{'errro-border':myForm.get('dob')?.errors?.['required'] && myForm.get('dob')?.touched}">
+  [customClass]="{'error-border':myForm.get('dob')?.errors?.['required'] && myForm.get('dob')?.touched}"
+  >
   </sysmo-dob>
   <div *ngIf="myForm.get('dob')?.errors?.['required'] && myForm.get('dob')?.touched">
     <small style="color:red">Please Enter the Correct DOB</small>

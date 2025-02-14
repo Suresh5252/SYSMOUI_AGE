@@ -4,9 +4,10 @@
   <ion-input type="date" fill="outline" 
     [min]="minDate" [max]="maxDate" [value]="dateOfBirth"
     (ionChange)="selectedDateOfBirth($event)"
-    (ionBlur)="onTouched()"
+    (ionBlur)="handleBlur()"
+    [ngStyle]="customStyle"
+    [ngClass]="customClass"
    ></ion-input>
- 
  <sysmo-age [dob]="dateOfBirth"></sysmo-age>
  </div>
 
