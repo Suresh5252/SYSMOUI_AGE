@@ -5,11 +5,18 @@
     [min]="minDate" [max]="maxDate" [value]="dateOfBirth"
     (ionChange)="selectedDateOfBirth($event)"
     (ionBlur)="handleBlur()"
-    [ngStyle]="customStyle"
-    [ngClass]="customClass"
+    [ngClass]="customClassInput"
    ></ion-input>
- <sysmo-age [dob]="dateOfBirth"></sysmo-age>
+ <!-- <sysmo-age [dob]="dateOfBirth"></sysmo-age> -->
+  <p *ngIf="dateOfBirth" [ngStyle]="customStyleText">{{ageText}} {{dateOfBirth | ageCalculator }}</p>
  </div>
 
+<!-- @Pipe({
+  name : 'agecalculator'
+})
+class AgeCalculator{
 
-
+  pipeTranform(...args){
+    
+  }
+} -->

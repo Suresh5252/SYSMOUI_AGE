@@ -1,14 +1,42 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, FormsModule, NG_VALIDATORS, NG_VALUE_ACCESSOR, NgModel, ValidationErrors, Validator } from '@angular/forms';
 import { IonicModule } from '@ionic/angular'
 import { SysmoAgeComponent } from '../sysmo-age/sysmo-age.component';
+
+@Pipe({
+  name:'ageCalculator',
+  pure:true
+})
+export class AgeCalculatorPipe implements PipeTransform{
+  
+  transform(dateOfBirth: string, ...args: any[]) {
+    let age;
+    try{
+      if(dateOfBirth){
+      const currentDate=new Date()
+      const dob = new Date(dateOfBirth)
+      age=currentDate.getFullYear()-dob.getFullYear()
+      //check the birthday of the current year to return exact age
+      if(currentDate.getMonth()<dob.getMonth() || 
+      currentDate.getMonth()===dob.getMonth() && 
+      currentDate.getDate()<dob.getDate()){
+        age--
+      }
+    } 
+    }catch(error){
+      console.error(error)
+    }
+    console.log(age)
+    return age
+  }
+  }
 
 @Component({
   selector: 'sysmo-dob',
   templateUrl: './sysmo-dob.component.html',
   styleUrls: ['./sysmo-dob.component.scss'],
-  imports:[IonicModule,CommonModule,FormsModule,SysmoAgeComponent],
+  imports:[IonicModule,CommonModule,FormsModule,AgeCalculatorPipe],
    providers:[
       {
       provide:NG_VALUE_ACCESSOR,
@@ -21,10 +49,9 @@ import { SysmoAgeComponent } from '../sysmo-age/sysmo-age.component';
 })
 export class SysmoDobComponent  implements OnInit,ControlValueAccessor {
 
-  
-  @Input() customClass: string | string[] | { [key: string]: string } = '';
-
-   @Input() customStyle: {[key:string]:string}={}
+  @Input() ageText!:string
+  @Input() customClassInput: string | string[] | { [key: string]: string } = '';
+  @Input() customStyleText: {[key:string]:string}={}
 
   dateOfBirth!:string
   minDate!:string
@@ -71,9 +98,9 @@ export class SysmoDobComponent  implements OnInit,ControlValueAccessor {
     this.minDate=`${currentyear-60}-01-01`
     this.maxDate=`${currentyear-18}-12-31`
     console.log(this.dateOfBirth)
-
-    console.log(this.customClass)
   }
 
 
 }
+
+

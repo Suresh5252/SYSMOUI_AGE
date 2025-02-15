@@ -2,7 +2,9 @@
   <!-- <ion-input type="date" formControlName="dob"></ion-input> -->
   <label>Date Of Birth:</label>
   <sysmo-dob formControlName="dob" 
-  [customClass]="{'error-border':myForm.get('dob')?.errors?.['required'] && myForm.get('dob')?.touched}"
+  [customClassInput]="{'error-border':myForm.get('dob')?.errors?.['required'] && myForm.get('dob')?.touched}"
+  [ageText]="'the customer age is:'"
+  [customStyleText]="{color:'green'}"
   >
   </sysmo-dob>
   <div *ngIf="myForm.get('dob')?.errors?.['required'] && myForm.get('dob')?.touched">
